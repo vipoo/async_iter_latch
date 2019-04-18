@@ -1,0 +1,82 @@
+{
+  "name": "async_iter_latch",
+  "version": "1.0.0",
+  "author": "Dean Netherton",
+  "license": "MIT",
+  "description": "Provide a push latching iterator",
+  "main": "index.js",
+  "engines": {
+    "node": "10.15.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vipoo/async_iter_latch.git"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src",
+        "scripts"
+      ],
+      "extensions": "js",
+      "quiet": true,
+      "legacyWatch": false,
+      "delay": 1000,
+      "runOnChangeOnly": false,
+      "inherit": true
+    },
+    "ci": {
+      "patterns": [
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "extensions": "js",
+      "quiet": true,
+      "legacyWatch": false,
+      "delay": 1000,
+      "runOnChangeOnly": false,
+      "inherit": true
+    }
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "lint": "eslint --fix src tests",
+    "clean": "./scripts/clean.sh",
+    "test": "NODE_ENV=test mocha --require \"@babel/register\" tests/**",
+    "watch": "npm-watch",
+    "prepack": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "core-js": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-do-expressions": "^7.2.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-proposal-partial-application": "^7.4.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "babel-eslint": "^11.0.0-beta.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
+    "eslint-config-stickler": "^1.0.4",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-no-only-tests": "^2.3.0",
+    "eslint-plugin-node": "^8.0.1",
+    "mocha": "^6.1.4",
+    "npm-watch": "^0.6.0",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
+  }
+}

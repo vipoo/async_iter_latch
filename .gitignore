@@ -1,0 +1,5 @@
+/examples
+/lib
+/index.js
+node_modules
+*.tgz
