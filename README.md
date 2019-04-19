@@ -1,6 +1,8 @@
 # async_iter_latch
 -----------------
 
+[![Build Status](https://travis-ci.com/vipoo/async_iter_latch.svg?branch=master)](https://travis-ci.com/vipoo/async_iter_latch)
+
 async_iter_latch allows for the async 'pushing' of values to a async iteration
 
 The 'push' operation return a promise, that resolves when the iteration has consumed the item
