@@ -24,6 +24,8 @@ See the example files for small code snippet examples
 
 ```javascript
 
+  import {createLatch} from 'async_iter_latch'
+
   // Create a push based iteration set
   const {push, abort, stop, items} = await createLatch()
 
