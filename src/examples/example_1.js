@@ -1,17 +1,17 @@
 import {createLatch} from '../lib'
 
 async function main() {
-  const {push, stop, items} = await createLatch()
+  const latch = await createLatch()
 
   setTimeout(async () => {
-    for await (const item of items())
+    for await (const item of latch.items())
       console.log(item)
   }, 10)
 
-  await push(1)
-  await push(2)
-  await push(3)
-  await stop()
+  await latch.push(1)
+  await latch.push(2)
+  await latch.push(3)
+  await latch.return()
 }
 
 main()

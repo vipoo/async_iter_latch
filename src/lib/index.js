@@ -5,7 +5,7 @@ export async function createLatch() {
   let keepAlive
   let latch = deferredPromise()
   const unlatch = []
-
+  let hasStopped = false
   const keepAliveTimer = () => keepAlive = setTimeout(keepAliveTimer, 250)
 
   async function push(item, options = {}) {
@@ -31,12 +31,19 @@ export async function createLatch() {
 
   async function untilNextValueAvailable() {
     await latch.promise
-    latch = deferredPromise()
+    latch = deferredPromise({})
   }
 
   function unLatchNextValue() {
     const p = unlatch.shift()
     p.res()
+  }
+
+  function unlatchAll() {
+    latch.res()
+    for (const p of unlatch)
+      p.res()
+    unlatch.length = 0
   }
 
   function extractNextValue() {
@@ -58,12 +65,19 @@ export async function createLatch() {
         if (done)
           break
         yield item
+
         unLatchNextValue()
       }
     } finally {
+      hasStopped = true
+      unlatchAll()
       clearTimeout(keepAlive)
     }
   }
 
-  return {push, abort, stop, items}
+  function hasStoppedConsuming() {
+    return hasStopped
+  }
+
+  return {push, abort, stop, completed: stop, return: stop, error: abort, items, hasStoppedConsuming}
 }

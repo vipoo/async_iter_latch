@@ -1,6 +1,6 @@
 {
   "name": "async_iter_latch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Dean Netherton",
   "license": "MIT",
   "description": "Provide a push latching iterator",
@@ -25,10 +25,9 @@
       "runOnChangeOnly": false,
       "inherit": true
     },
-    "ci": {
+    "test": {
       "patterns": [
         "src",
-        "scripts",
         "tests"
       ],
       "extensions": "js",
